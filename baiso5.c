@@ -1,46 +1,52 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include <math.h>
+
 void init(void){
 	glClearColor(0.0,0.0,0.0,0.0);
 	glShadeModel(GL_FLAT);
 }
-float alpha = 5.0;
+float angle = 0.0, alpha = 0.0;
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
 	//mau doi tuong
 	glColor3f(1.0,1.0,1.0);
 	// ma tran don vi
 	glLoadIdentity();
-//	gluLookAt(0.0,0.0,5.0,0.0,0.0,0.0,0.0,1.0,0.0);
+	//thong so nguoi quan sat
+	gluLookAt(0.0,0.0,10.0,0.0,0.0,0.0,0.0,1.0,0.0);
+
 	
-	glTranslatef(0,0,0);
-	glScalef(alpha,alpha,alpha);
-	glTranslatef(0,0,0);
-	GLfloat step = 3.14 / 5.0;
-	register int i;
-	GLfloat angle, r;
-	glBegin(GL_LINE_LOOP);
-	for (i = 0; i < 10; ++i) {
-		r = (i % 2 == 0 ? 7 : 3);
-		angle = i * step;
-		glVertex3f((r * cos(angle)), r * sin(angle),0.0);
-	}
-	glEnd();
+	glPushMatrix();
+	glRotatef(angle,0,1,0);
+
+//	glRotatef(20,1,0,0);
+	glRotatef(10,1,0,1);
+	glScalef(1,2,1);
+	glutWireCube(2);
+	glPopMatrix();
 	glutSwapBuffers();
 	glFlush();
 }
 
-//click a
-void spincanh(){
-	if(alpha > 3.5){
-		alpha -= 0.0001;
-		glutPostRedisplay();
+//click chuot
+void spin(){
+	angle -= 0.01;
+	glutPostRedisplay();
+}
+void mouse(int button, int state, int x, int y)
+{
+	if(button == GLUT_LEFT_BUTTON){
+		glutIdleFunc(spin);
 	}
 }
+//phim a
+void spincanh(){
+	alpha += 0.01;
+	glutPostRedisplay();
+}
 void keyboard(unsigned char key,int x,int y){
-	if(key == 'b'){
+	if(key == 'a'){
 		glutIdleFunc(spincanh);
 	}
 }
@@ -50,9 +56,9 @@ void reshape(int w,int h){
 	glLoadIdentity();
 	
 	//cau lenh phep chieu khoi canh
-//	glFrustum(-2.0,2.0,-2.0,2.0,4.0,20.0);
+//	glFrustum(-1.0,1.0,-1.0,1.0,1.5,20.0);
 	//phep chieu song song
-	glOrtho(-35.0, 35.0, -35.0, 35.0, -1.0, 1.0);
+	glOrtho(-10.0,10.0,-10.0,10.0,1.5,20.0);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -65,6 +71,7 @@ int main(int argc,char** argv){
 	init();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
+	glutMouseFunc(mouse);
 	glutKeyboardFunc(keyboard);
 	glutMainLoop();
 	return 0;

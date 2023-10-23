@@ -16,27 +16,12 @@ void display(void){
 	glLoadIdentity();
 	//thong so nguoi quan sat
 	gluLookAt(0.0,10.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0);
-//tinh tien
-//	glTranslatef(angle,0,0);
 
-//co dan
-//	glScalef(1.0,2.0,1.0);
-
-// quay 1 goc angle quanh truc noi tu goc toa do O den (x,y,z)
-// glRotatef(angle,x,y,z)
-
-
-//	glTranslatef(0,-1,0);
-//	glPushMatrix();
-//	glRotatef(20,1,1,1);
-//	glScalef(1,2,1);
-//	glutWireCube(1.0);
-//	glPopMatrix();
 	glTranslatef(0,0,1.5);
 	glPushMatrix();
 	glRotatef(17,1,1,1);
 	glRotatef(alpha,0,0,1);
-	glutWireSphere(1,8,10);
+	glutWireSphere(1,20,16);
 	glPopMatrix();
 	
 	glTranslatef(-0.3,0,-2);
@@ -44,7 +29,6 @@ void display(void){
 	glRotatef(15,1,1,1);
 	glRotatef(-15,1,0,0);
 	glScalef(1,1,2);
-
 	glutWireCube(1.0);
 	glPopMatrix();
 	
@@ -54,7 +38,7 @@ void display(void){
 
 //click chuot
 void spin(){
-	alpha = alpha + 0.02;
+	alpha = alpha + 0.03;
 	glutPostRedisplay();
 }
 void mouse(int button, int state, int x, int y)

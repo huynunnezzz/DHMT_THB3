@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=8
+UnitCount=10
 
 [VersionInfo]
 Major=1
@@ -81,46 +81,6 @@ OverrideBuildCmd=0
 BuildCmd=$(CPP) -c baiso1.c -o baiso1.o $(CXXFLAGS)
 
 [Unit6]
-FileName=baiso2c.c
-CompileCpp=1
-Folder=
-Compile=0
-Link=0
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=$(CPP) -c baiso2c.c -o baiso2c.o $(CXXFLAGS)
-
-[Unit4]
-FileName=baiso2a.c
-CompileCpp=1
-Folder=
-Compile=0
-Link=0
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=$(CPP) -c baiso2a.c -o baiso2a.o $(CXXFLAGS)
-
-[Unit5]
-FileName=baiso2b.c
-CompileCpp=1
-Folder=
-Compile=0
-Link=0
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=$(CPP) -c baiso2b.c -o baiso2b.o $(CXXFLAGS)
-
-[Unit7]
-FileName=baiso3.c
-CompileCpp=1
-Folder=
-Compile=0
-Link=0
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=$(CPP) -c baiso3.c -o baiso3.o $(CXXFLAGS)
-
-[Unit8]
 FileName=demo1.c
 CompileCpp=1
 Folder=
@@ -129,4 +89,64 @@ Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=$(CPP) -c demo1.c -o demo1.o $(CXXFLAGS)
+
+[Unit4]
+FileName=baiso2.c
+CompileCpp=1
+Folder=
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CPP) -c baiso2a.c -o baiso2a.o $(CXXFLAGS)
+
+[Unit7]
+FileName=baiso4.c
+CompileCpp=1
+Folder=
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CPP) -c baiso4.c -o baiso4.o $(CXXFLAGS)
+
+[Unit8]
+FileName=baiso5.c
+CompileCpp=1
+Folder=
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CPP) -c baiso5.c -o baiso5.o $(CXXFLAGS)
+
+[Unit9]
+FileName=demobai3.c
+CompileCpp=1
+Folder=
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CPP) -c demobai3.c -o demobai3.o $(CXXFLAGS)
+
+[Unit10]
+FileName=baiso21.c
+CompileCpp=0
+Folder=
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CC) -c baiso31.c -o baiso31.o $(CFLAGS)
+
+[Unit5]
+FileName=baiso3.c
+CompileCpp=1
+Folder=
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CPP) -c baiso3.c -o baiso3.o $(CXXFLAGS)
 

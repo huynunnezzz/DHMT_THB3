@@ -1,11 +1,12 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include <math.h>
+
 void init(void){
 	glClearColor(0.0,0.0,0.0,0.0);
 	glShadeModel(GL_FLAT);
 }
+int angle = 0;
 float alpha = 0.0;
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -13,33 +14,41 @@ void display(void){
 	glColor3f(1.0,1.0,1.0);
 	// ma tran don vi
 	glLoadIdentity();
-//	gluLookAt(0.0,0.0,5.0,0.0,0.0,0.0,0.0,1.0,0.0);
+	//thong so nguoi quan sat
+	gluLookAt(0.0,0.0,10.0,0.0,0.0,0.0,0.0,1.0,0.0);
+
 	
-	glTranslatef(7,0,0);
+	glPushMatrix();
+	glTranslatef(-0.3,1,0);
+	
+	glRotatef(150,0,0,1);
+	glRotatef(80,1,1,0);
 	glRotatef(alpha,0,0,1);
-	glTranslatef(-7,0,0);
-	GLfloat step = 3.14 / 5.0;
-	register int i;
-	GLfloat angle, r;
-	glBegin(GL_LINE_LOOP);
-	for (i = 0; i < 10; ++i) {
-		r = (i % 2 == 0 ? 7 : 3);
-		angle = i * step;
-		glVertex3f((r * cos(angle)), r * sin(angle),0.0);
-	}
-	glEnd();
+	glutWireSphere(1,18,10);
+	glPopMatrix();
+	
+	
+	glPushMatrix();
+	glTranslatef(0,-1,0);
+	glRotatef(10,1,0,1);
+	glRotatef(10,0,1,0);
+	glScalef(1,2,1);
+	glutWireCube(1.0);
+	glPopMatrix();
+	
 	glutSwapBuffers();
 	glFlush();
 }
 
-//click a
-void spincanh(){
-	alpha += 0.01;
+//click chuot
+void spin(){
+	alpha = alpha + 0.02;
 	glutPostRedisplay();
 }
-void keyboard(unsigned char key,int x,int y){
-	if(key == 'a'){
-		glutIdleFunc(spincanh);
+void mouse(int button, int state, int x, int y)
+{
+	if(button == GLUT_LEFT_BUTTON){
+		glutIdleFunc(spin);
 	}
 }
 void reshape(int w,int h){
@@ -48,9 +57,9 @@ void reshape(int w,int h){
 	glLoadIdentity();
 	
 	//cau lenh phep chieu khoi canh
-//	glFrustum(-2.0,2.0,-2.0,2.0,4.0,20.0);
+//	glFrustum(-1.0,1.0,-1.0,1.0,1.5,20.0);
 	//phep chieu song song
-	glOrtho(-20.0, 20.0, -20.0, 20.0, -1.0, 1.0);
+	glOrtho(-3.0,3.0,-3.0,3.0,1.5,20.0);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -63,7 +72,7 @@ int main(int argc,char** argv){
 	init();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
-	glutKeyboardFunc(keyboard);
+	glutMouseFunc(mouse);
 	glutMainLoop();
 	return 0;
 }

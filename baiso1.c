@@ -6,8 +6,8 @@ void init(void){
 	glClearColor(0.0,0.0,0.0,0.0);
 	glShadeModel(GL_FLAT);
 }
-int angle = 0;
-float alpha = 0.0;
+
+float alpha1 = 0.0,alpha2 = 0.0;
 
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -15,11 +15,15 @@ void display(void){
 	glColor3f(1.0,1.0,1.0);
 	// ma tran don vi
 	glLoadIdentity();
-	gluLookAt(0.0,0.0,5.0,0.0,0.0,0.0,0.0,1.0,0.0);
-	glTranslatef(-2,0,0);
+	gluLookAt(0.0,0.0,10.0,0.0,0.0,0.0,0.0,1.0,0.0);
+
 	glPushMatrix();
-	glTranslatef(alpha,0,0);
-//	glRotatef(alpha,1,0,0);
+	//cau a
+//	glRotatef(alpha1,1,0,0);
+	//cau b
+	glTranslatef(-2,0,0);
+	glTranslatef(alpha2,0,0);
+
 	glutWireTeapot(0.5);
 	glPopMatrix();
 	glutSwapBuffers();
@@ -27,12 +31,12 @@ void display(void){
 }
 
 void spin(){
-	alpha = alpha + 0.1;
+	alpha1 +=  0.05;
 	glutPostRedisplay();
 }
 void tinhtien(){
-	if(alpha < 3.1){
-		alpha = alpha + 0.0001;
+	if(alpha2 < 3.1){
+		alpha2 +=  0.0001;
 		glutPostRedisplay();
 	}
 	

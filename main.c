@@ -6,8 +6,7 @@ void init(void){
 	glClearColor(0.0,0.0,0.0,0.0);
 	glShadeModel(GL_FLAT);
 }
-int angle = 0;
-float alpha = 0.0;
+float angle = 0.0, alpha = 0.0;
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
 	//mau doi tuong
@@ -15,37 +14,14 @@ void display(void){
 	// ma tran don vi
 	glLoadIdentity();
 	//thong so nguoi quan sat
-	gluLookAt(0.0,10.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0);
-//tinh tien
-//	glTranslatef(angle,0,0);
+	gluLookAt(0.0,0.0,10.0,0.0,0.0,0.0,0.0,1.0,0.0);
 
-//co dan
-//	glScalef(1.0,2.0,1.0);
-
-// quay 1 goc angle quanh truc noi tu goc toa do O den (x,y,z)
-// glRotatef(angle,x,y,z)
-
-
-//	glTranslatef(0,-1,0);
-//	glPushMatrix();
-//	glRotatef(20,1,1,1);
-//	glScalef(1,2,1);
-//	glutWireCube(1.0);
-//	glPopMatrix();
-	glTranslatef(0,0,1.5);
-	glPushMatrix();
-	glRotatef(17,1,1,1);
-	glRotatef(alpha,0,0,1);
-	glutWireSphere(1,16,20);
-	glPopMatrix();
 	
-	glTranslatef(-0.3,0,-2);
 	glPushMatrix();
-	glRotatef(15,1,1,1);
-	glRotatef(-15,1,0,0);
-	glScalef(1,1,2);
-
-	glutWireCube(1.0);
+	glRotatef(angle,0,1,0);
+	glRotatef(10,1,0,1);
+	glScalef(1,2,1);
+	glutWireCube(2);
 	glPopMatrix();
 	
 	glutSwapBuffers();
@@ -54,13 +30,23 @@ void display(void){
 
 //click chuot
 void spin(){
-	alpha = alpha + 0.02;
+	angle -= 0.01;
 	glutPostRedisplay();
 }
 void mouse(int button, int state, int x, int y)
 {
 	if(button == GLUT_LEFT_BUTTON){
 		glutIdleFunc(spin);
+	}
+}
+//phim a
+void spincanh(){
+	alpha += 0.01;
+	glutPostRedisplay();
+}
+void keyboard(unsigned char key,int x,int y){
+	if(key == 'a'){
+		glutIdleFunc(spincanh);
 	}
 }
 void reshape(int w,int h){
@@ -71,7 +57,7 @@ void reshape(int w,int h){
 	//cau lenh phep chieu khoi canh
 //	glFrustum(-1.0,1.0,-1.0,1.0,1.5,20.0);
 	//phep chieu song song
-	glOrtho(-3.0,3.0,-3.0,3.0,1.5,20.0);
+	glOrtho(-10.0,10.0,-10.0,10.0,1.5,20.0);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -85,9 +71,7 @@ int main(int argc,char** argv){
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMouseFunc(mouse);
+	glutKeyboardFunc(keyboard);
 	glutMainLoop();
 	return 0;
 }
-
-
-
